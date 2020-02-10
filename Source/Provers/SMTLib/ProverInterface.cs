@@ -136,6 +136,10 @@ namespace Microsoft.Boogie.SMTLib
           if (path == null) 
             path = Yices2.ExecutablePath();
           return SMTLibProcess.ComputerProcessStartInfo(path, "--incremental");
+        case SolverKind.BOOLECTOR:
+          if (path == null) 
+            path = Boolector.ExecutablePath();
+          return SMTLibProcess.ComputerProcessStartInfo(path, "--incremental --model-gen --smt-model");
         default:
           Debug.Assert(false);
           return null;

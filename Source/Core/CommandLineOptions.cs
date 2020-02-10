@@ -494,6 +494,8 @@ namespace Microsoft.Boogie {
     public string CVC4ExecutablePath = null;
     public string Yices2ExecutablePath = null;
     public string Yices2ExecutableName = null;
+    public string BoolectorExecutablePath = null;
+    public string BoolectorExecutableName = null;
 
     public int KInductionDepth = -1;
     public int EnableUnSatCoreExtract = 0;
@@ -1601,6 +1603,11 @@ namespace Microsoft.Boogie {
 				Yices2ExecutablePath = args[ps.i];
 			}
 			return true;
+        case "boolector2exe":
+			if (ps.ConfirmArgumentCount(1)) {
+				BoolectorExecutablePath = args[ps.i];
+			}
+			return true;
         case "kInductionDepth":
           ps.GetNumericArgument(ref KInductionDepth);
           return true;
@@ -2251,6 +2258,10 @@ namespace Microsoft.Boogie {
   Yices2 specific options:
   /yices2exe:<path>
                 path to Yices2 executable
+
+  Boolector specific options:
+  /boolectorexe:<path>
+                path to Boolector executable
 ");
     }
   }

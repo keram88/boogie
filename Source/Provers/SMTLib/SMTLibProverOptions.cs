@@ -27,7 +27,7 @@ namespace Microsoft.Boogie.SMTLib
     }
   }
 
-  public enum SolverKind { Z3, CVC4, YICES2 };
+  public enum SolverKind { Z3, CVC4, YICES2, BOOLECTOR };
 
   public class SMTLibProverOptions : ProverOptions
   {
@@ -101,8 +101,14 @@ namespace Microsoft.Boogie.SMTLib
             Solver = SolverKind.YICES2;
             if (Logic.Equals("")) Logic = "ALL";
             break;
+          case "boolector":
+          case "Boolector":
+          case "btor":
+            Solver = SolverKind.BOOLECTOR;
+            if (Logic.Equals("")) Logic = "QF_AUFBV";
+            break;
           default:
-            ReportError("Invalid SOLVER value; must be 'Z3' or 'CVC4' or 'Yices2'");
+            ReportError("Invalid SOLVER value; must be 'Z3' or 'CVC4' or 'Yices2' or 'Boolector'");
             return false;
         }
         return true;
